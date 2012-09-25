@@ -9,27 +9,18 @@
 # Answer:
 #     4613732
 # Notes:
-#     - Compute and cache only the even-valued terms.
-
-cache = {2: 2, 5: 8}
+#     - Compute only the even-valued terms.
 
 def problem2(n):
-    def fib(n):
-        if n in cache:
-            return cache[n]
-        else:
-            new = 4 * fib(n - 3) + fib(n - 6)
-            cache[n] = new
-            return new
+    vsum = 2
+    prev = 2
+    value = 8
+    while value <= n:
+        vsum += value
+        tmp = value
+        value = 4 * value + prev
+        prev = tmp
 
-    s = 2
-    k = 5
-    f = 8
-    while f < n:
-        s += f
-        k += 3
-        f = fib(k)
-
-    return s
+    return vsum
 
 # print(problem2(4000000))
